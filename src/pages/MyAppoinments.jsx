@@ -16,9 +16,9 @@ const MyAppoinments = () => {
   return (
     <div className="mt-5 md:mb-[30vh]">
       <p className="text-xl ">My appointments</p>
-      {bookings ? 
+      {bookings  &&
         bookings.map((booking,index)=>(
-         <div key={booking?.doctor._id} className="flex flex-col md:flex-row items-center md:items-end justify-between mt-5 md:mt-10  border rounded-lg p-3 md:p-6 shadow-lg">
+         <div key={booking?.doctor._id+index} className="flex flex-col md:flex-row items-center md:items-end justify-between mt-5 md:mt-10  border rounded-lg p-3 md:p-6 shadow-lg">
           <div className="flex  flex-col md:flex-row gap-4">
             <div className="bg-blue-100 rounded-lg">
               <img className="w-36" src={booking?.doctor.image} />
@@ -45,12 +45,15 @@ const MyAppoinments = () => {
         ))
        
       
-      : 
-      <div className="flex flex-col md:flex-row justify-center items-center md:gap-2 mt-10">
+      }
+      
+      {   bookings.length ==0 && <div className="flex flex-col md:flex-row justify-center items-center md:gap-2 mt-10">
       <span className=" text-gray-500 text-center">You don't have any appointments at the moment</span>
       <Link className="font-bold" to={'/doctors'}>Book an appointment?</Link>
       </div>
+      
       }
+      
     </div>
   );
 };

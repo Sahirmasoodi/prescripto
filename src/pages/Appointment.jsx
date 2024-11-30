@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { assets, doctors, slotDays, timeSlots } from "../assets/assets_frontend/assets";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,7 +36,7 @@ const Appointment = () => {
       alert('Signup to book an appointment')
     }
   }
-  
+
 
   return (
     <div>
@@ -101,7 +101,7 @@ const Appointment = () => {
         </button>
         <p className='text-red-600 text-sm h-3 ms-3'>{error}</p>
 
-        <div>
+        <div >
           <RelatedDoctors speciality={speciality} doctors={doctors}/>
         </div>
     </div>

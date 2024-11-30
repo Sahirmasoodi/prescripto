@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react'
 import TopDoctorCard from './TopDoctorCard'
 
 const RelatedDoctors = ({speciality,doctors}) => {
-    const [relatedDoctor,setRelatedDoctor] = useState([])
+    const [relatedDoctor,setRelatedDoctor] = useState()
+
+
     function filterDoctor(){
         setRelatedDoctor(doctors.filter(doc=>doc.speciality ===speciality))
     }
-    useEffect(()=>{
-  filterDoctor()
-    },[])
-  
     
+    useEffect(() => {
+      filterDoctor();    
+    }, []);
   return (
     <div className="flex flex-col items-center gap-5 mt-20 ">
       <div>
@@ -19,15 +20,17 @@ const RelatedDoctors = ({speciality,doctors}) => {
           Simply browse through our extensive list of trusted doctors.
         </p>
       </div>
-      <div onClick={'/my-appointments'} className="flex gap-5 flex-wrap justify-evenly md:mx-16">
-        {relatedDoctor.map((doctor) => (
+      <div className="flex gap-5 flex-wrap justify-evenly md:mx-16">
+        {relatedDoctor && relatedDoctor.map((doctor) => (
+          <div  key={doctor._id} >
           <TopDoctorCard
-            key={doctor._id}
             image={doctor.image}
             speciality={doctor.speciality}
             name={doctor.name}
             id={doctor._id}
+            
           />
+          </div>
         ))}
       </div>
     </div>
